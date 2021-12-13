@@ -42,6 +42,9 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # .env environment variables
+  gem 'dotenv', '~> 2.2.1'
 end
 
 group :test do
@@ -55,4 +58,14 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# Devise for authentication
 gem 'devise'
+
+# Omniauth
+gem 'omniauth-facebook', '~> 4.0'
+gem 'omniauth-github', '~> 1.1', '>= 1.1.2'
+gem 'omniauth-google-oauth2', '~> 0.4.1'
+gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1'
+
+# Persists Sessions database
+gem 'activerecord-session_store', '~> 1.0'
