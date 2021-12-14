@@ -6,7 +6,7 @@ class Users::SessionsController < Devise::SessionsController
   # GET /resource/sign_in
   def new
     p 'aqui**********************************************************'
-    ENV['GITHUB_APP_ID']
+    p ENV["GITHUB_APP_ID"]
     super
   end
 

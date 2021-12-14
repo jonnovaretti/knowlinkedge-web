@@ -42,9 +42,6 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
-  # .env environment variables
-  gem 'dotenv', '~> 2.2.1'
 end
 
 group :test do
@@ -69,3 +66,6 @@ gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1'
 
 # Persists Sessions database
 gem 'activerecord-session_store', '~> 1.0'
+
+# .env environment variables
+gem 'dotenv-rails', groups: [:development, :test]
