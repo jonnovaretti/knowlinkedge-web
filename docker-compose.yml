@@ -5,6 +5,8 @@ services:
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 3306:3306
 
   myapp:
     tty: true # Enables debugging capabilities when attached to this container.

@@ -59,9 +59,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 # Omniauth
-gem 'omniauth-facebook', '~> 4.0'
+gem 'omniauth-facebook', '~> 7.0'
 gem 'omniauth-github', '~> 1.1', '>= 1.1.2'
-gem 'omniauth-google-oauth2', '~> 0.4.1'
+gem 'omniauth-google-oauth2', '~> 0.8'
 gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1'
 
 # Persists Sessions database
