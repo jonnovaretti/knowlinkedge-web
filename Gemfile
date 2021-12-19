@@ -69,3 +69,6 @@ gem 'activerecord-session_store', '~> 1.0'
 
 # .env environment variables
 gem 'dotenv-rails', groups: [:development, :test]
+
+# Oauth authentication
+gem 'doorkeeper'
