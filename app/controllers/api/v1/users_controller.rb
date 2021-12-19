@@ -11,12 +11,6 @@ module Api
 
         respond_with current_authenticated_user
       end
-
-      private
-
-      def current_authenticated_user
-        User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
-      end
     end
   end
 end
