@@ -1,27 +1,23 @@
-# frozen_string_literal: true
-
 module Api
   module V1
     class StudiesController < ApiBaseController
       def create
-        title = study_params[:title]
         author = current_authenticated_user
-        created_at = Time.now.getutc
-        hash_tags = study_params[:hash_tags]
 
-        study = Study.new(author, title, hash_tags, created_at)
+        use_case = UseCases::CreateStudyUseCase.new
+        use_case.execute(author, study_params)
 
-        if study.save
-          render json: { data: study }, status: :created
+        if use_case.success?
+          render json: { data: use_case.output.to_json }, status: :created
         else
-          render json: study.errors, status: :unprocessable_entity
+          render json: { messages: use_case.messages.to_sentence }, status: :unprocessable_entity
         end
       end
 
       private
 
       def study_params
-        params.require(:study).permit(:title, :hash_tags)
+        params.require(:study).permit(:title, :area, :brief, :hash_tags)
       end
     end
   end

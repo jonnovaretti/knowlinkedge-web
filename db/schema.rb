@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_19_181641) do
+ActiveRecord::Schema.define(version: 2021_12_20_144918) do
+
+  create_table "hash_tag_studies", id: false, charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "study_id", null: false
+    t.bigint "hash_tag_id", null: false
+    t.index ["hash_tag_id"], name: "index_hash_tag_studies_on_hash_tag_id"
+    t.index ["study_id"], name: "index_hash_tag_studies_on_study_id"
+  end
+
+  create_table "hash_tags", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "area"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "oauth_access_tokens", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "resource_owner_id"
@@ -35,6 +49,16 @@ ActiveRecord::Schema.define(version: 2021_12_19_181641) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
+  create_table "studies", charset: "utf8mb4", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.string "brief"
+    t.string "area"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_studies_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -50,9 +74,14 @@ ActiveRecord::Schema.define(version: 2021_12_19_181641) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.bigint "author_id"
+    t.index ["author_id"], name: "index_users_on_author_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "hash_tag_studies", "hash_tags"
+  add_foreign_key "hash_tag_studies", "studies"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
+  add_foreign_key "studies", "users"
 end
