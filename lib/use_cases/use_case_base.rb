@@ -8,8 +8,6 @@ module UseCases
       errors.nil?
     end
 
-    def messages; end
-
     protected
 
     attr_reader :errors

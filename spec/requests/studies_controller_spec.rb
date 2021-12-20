@@ -24,7 +24,7 @@ RSpec.describe 'StudiesControllers', type: :request do
       let(:user) { FactoryBot.create(:user) }
       let(:token) { FactoryBot.create(:access_token, resource_owner_id: user.id) }
 
-      it 'creates a new Study' do
+      it 'not create a new Study' do
         expect do
           post '/api/v1/studies', headers: { 'Authorization': "Bearer #{token.token}" },
                                   params: { study: { title: nil,
