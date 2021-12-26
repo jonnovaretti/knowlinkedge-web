@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe 'StudiesControllers', type: :request do
+RSpec.describe 'StudiesController', type: :request do
   describe 'POST #create' do
-    context 'with valid params' do
-      let(:user) { FactoryBot.create(:user) }
-      let(:token) { FactoryBot.create(:access_token, resource_owner_id: user.id) }
+    let(:user) { FactoryBot.create(:user) }
+    let(:token) { FactoryBot.create(:access_token, resource_owner_id: user.id) }
 
+    context 'with valid params' do
       it 'creates a new Study' do
         expect do
           post '/api/v1/studies', headers: { 'Authorization': "Bearer #{token.token}" },
@@ -21,9 +21,6 @@ RSpec.describe 'StudiesControllers', type: :request do
     end
 
     context 'with invalid params' do
-      let(:user) { FactoryBot.create(:user) }
-      let(:token) { FactoryBot.create(:access_token, resource_owner_id: user.id) }
-
       it 'not create a new Study' do
         expect do
           post '/api/v1/studies', headers: { 'Authorization': "Bearer #{token.token}" },

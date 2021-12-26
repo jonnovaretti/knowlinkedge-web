@@ -272,6 +272,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.2)
     thor (1.1.0)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -328,6 +329,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   spring
+  sqlite3
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
@@ -338,4 +340,4 @@ RUBY VERSION
    ruby 2.6.9p207
 
 BUNDLED WITH
-   2.2.32
+   2.2.33

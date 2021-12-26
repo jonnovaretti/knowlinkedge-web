@@ -8,7 +8,7 @@ module Api
         use_case.execute(author, study_params)
 
         if use_case.success?
-          render json: { data: use_case.output.to_json }, status: :created
+          render json: { data: use_case.output }, status: :created
         else
           render json: { messages: use_case.messages.to_sentence }, status: :unprocessable_entity
         end
