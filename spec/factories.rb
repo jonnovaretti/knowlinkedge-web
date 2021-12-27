@@ -26,3 +26,11 @@ FactoryBot.define do
     material_type { Material::MATERIAL_TYPE[:mind_map] }
   end
 end
+
+FactoryBot.define do
+  factory :reference, class: 'Reference' do
+    id { 2 }
+    title { 'Building microservice' }
+    authors { 'Sam Newton, Martin Fowler' }
+  end
+end

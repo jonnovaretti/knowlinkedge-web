@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_26_225249) do
+ActiveRecord::Schema.define(version: 2021_12_27_182815) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -66,6 +66,13 @@ ActiveRecord::Schema.define(version: 2021_12_26_225249) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "material_references", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "reference_id", null: false
+    t.bigint "material_id", null: false
+    t.index ["material_id"], name: "index_material_references_on_material_id"
+    t.index ["reference_id"], name: "index_material_references_on_reference_id"
+  end
+
   create_table "materials", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "study_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -86,6 +93,14 @@ ActiveRecord::Schema.define(version: 2021_12_26_225249) do
     t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
     t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
+  end
+
+  create_table "references", charset: "utf8mb4", force: :cascade do |t|
+    t.string "authors"
+    t.string "title"
+    t.string "link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "sessions", charset: "utf8mb4", force: :cascade do |t|
@@ -134,6 +149,8 @@ ActiveRecord::Schema.define(version: 2021_12_26_225249) do
   add_foreign_key "comments", "studies"
   add_foreign_key "hash_tag_studies", "hash_tags"
   add_foreign_key "hash_tag_studies", "studies"
+  add_foreign_key "material_references", "materials"
+  add_foreign_key "material_references", "references"
   add_foreign_key "materials", "studies"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
   add_foreign_key "studies", "users"
