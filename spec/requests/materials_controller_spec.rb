@@ -20,8 +20,7 @@ RSpec.describe 'MaterialsController', type: :request do
     end
 
     context 'with invalid params' do
-      it 'did not find study and does not create a new Material
-        and return internal server error' do
+      it 'return internal server error when study has not found' do
         expect do
           file = fixture_file_upload('atacama.jpeg', 'image/jpeg')
           post '/api/v1/materials', headers: { 'Authorization': "Bearer #{token.token}" },

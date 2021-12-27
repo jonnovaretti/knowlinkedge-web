@@ -1,20 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe HashTag, type: :model do
-  context 'HashTags being created' do
-    it 'with valid params' do
-      HashTag.create(name: 'microservices', area: 'Technology')
-      expect(HashTag.count).to eq 1
+  describe '.create' do
+    context 'with valid params' do
+      it 'insert with all params' do
+        HashTag.create(name: 'microservices', area: 'Technology')
+        expect(HashTag.count).to eq 1
+      end
     end
 
-    it 'is not created without name' do
-      HashTag.create(name: nil, area: 'Technology')
-      expect(HashTag.count).to eq 0
-    end
+    context 'with invalid params' do
+      it 'not insert without name' do
+        HashTag.create(name: nil, area: 'Technology')
+        expect(HashTag.count).to eq 0
+      end
 
-    it 'is not created without params' do
-      HashTag.create(name: 'microservices', area: nil)
-      expect(HashTag.count).to eq 0
+      it 'not insert without area' do
+        HashTag.create(name: 'microservices', area: nil)
+        expect(HashTag.count).to eq 0
+      end
     end
   end
 end
