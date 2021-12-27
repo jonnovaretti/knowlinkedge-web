@@ -9,7 +9,6 @@ module UseCases
         @material = Material.new(study: study)
 
         material.file.attach(params[:file])
-
         references = build_references(params[:references])
         material.add_references(references)
 

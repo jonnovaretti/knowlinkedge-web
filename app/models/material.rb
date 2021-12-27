@@ -25,7 +25,7 @@ class Material < ApplicationRecord
 
   def add_references(references)
     return if references.nil?
-    byebug
+
     self.references = references
   end
 end

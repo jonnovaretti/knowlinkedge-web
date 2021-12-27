@@ -15,7 +15,7 @@ module Api
       private
 
       def material_params
-        params.require(:material).permit(:file, :study_id)
+        params.require(:material).permit(:file, :study_id, references: [{}])
       end
     end
   end
