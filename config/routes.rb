@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :users
       resources :studies, only: [:create]
       resources :materials, only: [:create]
+      resources :comments, only: [:create]
     end
   end
 end

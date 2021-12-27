@@ -1,11 +1,11 @@
 module UseCases
   class UseCaseBase
     def initialize
-      @errors = nil
+      @errors = []
     end
 
     def success?
-      errors.nil?
+      errors.blank?
     end
 
     protected

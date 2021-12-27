@@ -19,3 +19,10 @@ FactoryBot.define do
     area { 'Technology' }
   end
 end
+
+FactoryBot.define do
+  factory :material, class: 'Material' do
+    id { 20 }
+    material_type { Material::MATERIAL_TYPE[:mind_map] }
+  end
+end

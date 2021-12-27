@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_26_130617) do
+ActiveRecord::Schema.define(version: 2021_12_26_225249) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 2021_12_26_130617) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "comments", charset: "utf8mb4", force: :cascade do |t|
+    t.string "text"
+    t.bigint "study_id", null: false
+    t.bigint "material_id"
+    t.integer "author_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["material_id"], name: "index_comments_on_material_id"
+    t.index ["study_id"], name: "index_comments_on_study_id"
+  end
+
   create_table "hash_tag_studies", id: false, charset: "utf8mb4", force: :cascade do |t|
     t.bigint "study_id", null: false
     t.bigint "hash_tag_id", null: false
@@ -58,7 +70,7 @@ ActiveRecord::Schema.define(version: 2021_12_26_130617) do
     t.bigint "study_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "type"
+    t.string "material_type"
     t.index ["study_id"], name: "index_materials_on_study_id"
   end
 
@@ -119,6 +131,7 @@ ActiveRecord::Schema.define(version: 2021_12_26_130617) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "studies"
   add_foreign_key "hash_tag_studies", "hash_tags"
   add_foreign_key "hash_tag_studies", "studies"
   add_foreign_key "materials", "studies"

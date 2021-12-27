@@ -9,11 +9,17 @@ module Api
 
       protected
 
-      def record_not_found(e)
-        render json: { messages: e.message }, status: :not_found
+      def record_not_found(error)
+        show_error_unless_production(error)
+
+        Rails.logger.error(error)
+        render json: { messages: error.message }, status: :not_found
       end
 
-      def return_internal_server_error
+      def return_internal_server_error(error)
+        show_error_unless_production(error)
+
+        Rails.logger.error(error)
         render json: { messages: 'An error has ocurred on server' }, status: :internal_server_error
       end
 
@@ -22,6 +28,12 @@ module Api
       end
 
       attr_reader :user
+
+      private
+
+      def show_error_unless_production(error)
+        p error unless Rails.env.production?
+      end
     end
   end
 end
